@@ -18,28 +18,28 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     event_name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     date: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     start_time: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     end_time: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     }
   }, {
     sequelize,
     modelName: 'Event',
-    tableName: 'events',
+    tableName: 'event',
     timestamps: false
   });
   return Event;

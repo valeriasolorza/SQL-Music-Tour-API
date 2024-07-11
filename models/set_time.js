@@ -18,18 +18,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     stage_id: {
-      type: Sequelize.SMALLINT,
+      type: DataTypes.SMALLINT,
       allowNull: false,
     },
     band_id: {
-      type: Sequelize.SMALLINT,
+      type: DataTypes.SMALLINT,
       allowNull: false,
     },
     start_time: {
-      type: Sequelize.DATE,
+      type: DataTypes.DATE,
       allowNull: false,
     }
   }, {
