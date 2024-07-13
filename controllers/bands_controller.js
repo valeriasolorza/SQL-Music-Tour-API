@@ -1,39 +1,72 @@
 const bands = require('express').Router()
 const db = require('../models')
-const { Band, Event, Meet_greet, Set_time, Stage_events, Stage } = db
+const { Band } = db
 
-// FIND ALL BANDS
+// SHOW ALL BANDS - GET
 bands.get('/', async (_req, res) => {
     try {
         const foundBands = await Band.findAll();
-        const foundEvents = await Event.findAll();
-        const foundMeet_greets = await Meet_greet.findAll();
-        const foundSet_times = await Set_time.findAll();
-        const foundStage_events = await Stage_events.findAll();
-        const foundStages = await Stage.findAll();
-        res.status(200).json({
-            foundBands,
-            foundEvents,
-            foundMeet_greets,
-            foundSet_times,
-            foundStage_events,
-            foundStages,
-        })
+        res.status(200).json(foundBands)
     } catch (error) {
         res.status(500).json(error)
     }
 })
 
 // FIND A SPECIFIC BAND
-// bands.get('/:id', async (req, res) => {
-//     try {
-//         const foundBand = await Band.findOne({
-//             where: { band_id: req.params.id }
-//         })
-//         res.status(200).json(foundBand)
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// })
+bands.get('/:id', async (req, res) => {
+    try {
+        const foundBand = await Band.findOne({
+            where: { band_id: req.params.id }
+        })
+        res.status(200).json(foundBand)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+// CREATE A NEW BAND - POST
+bands.post('/', async (req, res) => {
+    try {
+        const NewBand = await Band.create(req.body)
+        res.status(201).json({
+            message: 'Successfully inserted a new Band!',
+            data: NewBand
+        })
+    } catch {
+        res.status(422).json(error)
+    }
+})
+
+// UPDATE A BAND - PUT
+bands.put('/:id', async (req, res) => {
+    try {
+        const updatedBands = await Band.update(req.body, {
+            where: { band_id: req.params.id },
+            returning: true
+        })
+        res.status(202).json({
+            message: `Successfully updated ${updatedBands} band(s)`
+        })
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+// DELETE A BAND - DELETE
+bands.delete('/:id', async (req, res) => {
+    try {
+        const deletedBands = await Band.destroy({
+            where: {
+                band_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `Successfully deleted ${deletedBands} band(s)`
+        })
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 
 module.exports = bands
