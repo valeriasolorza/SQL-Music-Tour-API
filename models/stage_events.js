@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
   Stage_events.init({
     stage_events_id: {
       allowNull: false,
