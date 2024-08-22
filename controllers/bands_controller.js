@@ -18,8 +18,7 @@ bands.get('/', async (req, res) => {
     }
 })
 
-
-// FIND A SPECIFIC BAND - GET
+// FIND A SPECIFIC BAND -
 bands.get('/:id', async (req, res) => {
     try {
         const foundBand = await Band.findOne({
@@ -31,7 +30,7 @@ bands.get('/:id', async (req, res) => {
     }
 })
 
-// CREATE A NEW BAND - POST
+// CREATE A NEW BAND
 bands.post('/', async (req, res) => {
     try {
         const NewBand = await Band.create(req.body)
@@ -44,7 +43,7 @@ bands.post('/', async (req, res) => {
     }
 })
 
-// UPDATE A BAND - PUT
+// UPDATE A BAND
 bands.put('/:id', async (req, res) => {
     try {
         const updatedBands = await Band.update(req.body, {
@@ -59,7 +58,7 @@ bands.put('/:id', async (req, res) => {
     }
 })
 
-// DELETE A BAND - DELETE
+// DELETE A BAND
 bands.delete('/:id', async (req, res) => {
     try {
         const deletedBands = await Band.destroy({
@@ -76,4 +75,3 @@ bands.delete('/:id', async (req, res) => {
 })
 
 module.exports = bands
-

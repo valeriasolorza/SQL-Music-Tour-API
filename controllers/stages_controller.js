@@ -3,6 +3,7 @@ const { Op } = require('sequelize')
 const db = require('../models')
 const { Stage } = db
 
+
 // SHOW ALL STAGEs - GET
 stages.get('/', async (req, res) => {
   try {
@@ -17,6 +18,7 @@ stages.get('/', async (req, res) => {
     res.status(500).json(error)
   }
 })
+
 
 
 // FIND A SPECIFIC STAGEs - GET
